@@ -62,3 +62,50 @@ Run the script from your terminal (make sure your virtual environment is activat
 
 ```bash
 python extract_highlights.py -i <path_to_images> -o <output_markdown_file> [options]
+ ```
+
+### Command-Line Arguments
+
+This section details the arguments you can pass to the script:
+
+* `-i`, `--input-dir` ( **Required**):
+    * Path to the directory containing the images you want to process.
+    * *Example:* `-i ./my_scans`
+
+* `-o`, `--output-file` ( **Required**):
+    * Path where the output Markdown file will be saved.
+    * *Example:* `-o report.md`
+
+* `-t`, `--tolerance` (Optional):
+    * The vertical pixel tolerance used when grouping text lines for sorting. Affects how strictly the script considers text to be on the same line if the image is slightly skewed.
+    * *Default:* `10`
+    * *Example:* `-t 15`
+
+* `-s`, `--sleep` (Optional):
+    * The number of seconds to pause between processing each image. This helps manage API rate limits.
+    * *Default:* `5`
+    * *Example:* `-s 7`
+
+* `-m`, `--model` (Optional):
+    * The specific Gemini model name to use for the API calls.
+    * *Default:* `gemini-1.5-flash-latest` (Check script's `DEFAULT_MODEL` constant if different)
+    * *Example:* `-m gemini-1.5-pro-latest`
+    * **Find available model names here:** [ai.google.dev/models/gemini](https://ai.google.dev/models/gemini)
+
+---
+
+### Example Command
+
+Here is an example of how to run the script with some options:
+
+```bash
+python extract_highlights.py -i ./path/to/my/images -o ./output/highlights_report.md -t 12 -s 5
+```
+
+
+This command will:
+* Process images in the `./path/to/my/images` directory.
+* Save the formatted Markdown output to `./output/highlights_report.md`.
+* Use a sorting tolerance of 12 pixels.
+* Wait 5 seconds between each image processing step.
+* Use the default Gemini model specified in the script.
